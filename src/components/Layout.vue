@@ -6,9 +6,8 @@
 			<div class="p-4 text-lg font-bold hidden md:block">VacTrack</div>
 			<nav class="space-y-2 py-4 w-full mt-3">
 				<router-link v-for="item in menuItems" :key="item.name" :to="'/' + item.name"
-					class="group flex flex-col items-center md:flex-row md:items-center md:space-x-3 px-3 py-2 hover:bg-gray-700 rounded cursor-pointer transition"
-					@mouseenter="hoveredItem = item.name" @mouseleave="hoveredItem = null">
-					<div class="text-xl">{{ item.icon }}</div>
+					class="group flex flex-col items-center md:flex-row md:items-center md:space-x-3 px-3 py-2 hover:bg-gray-700 rounded cursor-pointer transition">
+					<FeatherIcon :name="item.icon" size="20" strokeWidth="2" class="text-white" />
 					<span class="hidden md:block text-sm font-medium transition-all duration-200">
 						{{ item.label }}
 					</span>
@@ -107,12 +106,12 @@ export default {
 		};
 
 		const menuItems = ref([
-			{ name: "", label: "Dashboard", icon: "🏠" },
-			{ name: "vaccinated", label: "Vaccinated Horses", icon: "🛒" },
-			{ name: "overdue", label: "Overdue Horses", icon: "📦" },
-			{ name: "needs-vaccination", label: "Needs Vaccination", icon: "👤" },
-			{ name: "requires-double-boosters", label: "Requires Double Boosters", icon: "📊" },
-			{ name: "missing-routine-vaccination", label: "Missing Routine Vaccination", icon: "📈" },
+			{ name: "", label: "Dashboard", icon: "home" },
+			{ name: "vaccinated", label: "Vaccinated Horses", icon: "check-circle" },
+			{ name: "overdue", label: "Overdue Horses", icon: "alert-triangle" },
+			{ name: "needs-vaccination", label: "Needs Vaccination", icon: "bell" },
+			{ name: "requires-double-boosters", label: "Requires Double Boosters", icon: "refresh-cw" },
+			{ name: "missing-routine-vaccination", label: "Missing Routine Vaccination", icon: "x-circle" },
 		]);
 
 		return { logout, hoveredItem, menuItems, dropdownOpen, toggleDropdown };
