@@ -1,11 +1,13 @@
 <template>
-	<h1 class="text-3xl font-semibold mt-5 mb-3">Dashboard</h1>
-	<hr class="border-b-1 border-gray-200 mb-5"/>
-	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-		<div v-for="(card, index) in dashboardData" :key="index"
-			class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm w-full">
-			<h5 class="mb-1 text-2xl font-bold tracking-tight">{{ formatNumber(card.count) }}</h5>
-			<p class="font-normal text-gray-400 text-sm">{{ card.title }}</p>
+	<div class="p-6">
+		<h2 class="text-2xl font-semibold mb-4">Dashboard</h2>
+		<hr class="border-b-1 border-gray-200 mb-5" />
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div v-for="(card, index) in dashboardData" :key="index"
+				class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm w-full">
+				<h5 class="mb-1 text-2xl font-bold tracking-tight">{{ formatNumber(card.count) }}</h5>
+				<p class="font-normal text-gray-400 text-sm">{{ card.title }}</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -17,7 +19,7 @@ import axios from "axios";
 const dashboardData = ref([]);
 
 const formatNumber = (num) => {
-  return new Intl.NumberFormat().format(num);
+	return new Intl.NumberFormat().format(num);
 };
 
 onMounted(async () => {

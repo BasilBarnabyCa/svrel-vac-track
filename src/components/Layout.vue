@@ -3,7 +3,7 @@
 		<!-- Sidebar (Main Nav) -->
 		<aside
 			class="bg-gray-800 text-white w-16 md:w-64 flex flex-col items-center md:items-start transition-all duration-300">
-			<div class="p-4 text-lg font-bold hidden md:block">Logo</div>
+			<div class="p-4 text-lg font-bold hidden md:block">VacTrack</div>
 			<nav class="space-y-2 py-4 w-full mt-3">
 				<router-link v-for="item in menuItems" :key="item.name" :to="'/' + item.name"
 					class="group flex flex-col items-center md:flex-row md:items-center md:space-x-3 px-3 py-2 hover:bg-gray-700 rounded cursor-pointer transition"
@@ -22,15 +22,15 @@
 			<header class="bg-white shadow p-4 flex justify-between items-center">
 				<!-- Breadcrumbs -->
 				<nav class="text-gray-600 text-sm">
-					<router-link to="/" class="text-gray-500 hover:underline">Dashboard</router-link> >
+					<!-- <router-link to="/" class="text-gray-500 hover:underline">Dashboard</router-link> >
 					<router-link to="/products" class="text-gray-500 hover:underline">Products</router-link> >
-					<span class="text-gray-800 font-semibold">All Products</span>
+					<span class="text-gray-800 font-semibold">All Products</span> -->
 				</nav>
 
 				<!-- Search & User Dropdown -->
 				<div class="flex items-center space-x-4">
 					<input type="text" placeholder="Search..."
-						class="border rounded px-3 py-2 w-48 md:w-64 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+						class="rounded-md border-1 border-gray-300 focus:ring-blue-500 focus:border-blue-500 px-3 py-2" />
 
 					<!-- User Icon Dropdown -->
 					<div class="relative">
@@ -107,7 +107,7 @@ export default {
 		};
 
 		const menuItems = ref([
-			{ name: "dashboard", label: "Dashboard", icon: "🏠" },
+			{ name: "", label: "Dashboard", icon: "🏠" },
 			{ name: "vaccinated", label: "Vaccinated Horses", icon: "🛒" },
 			{ name: "overdue", label: "Overdue Horses", icon: "📦" },
 			{ name: "needs-vaccination", label: "Needs Vaccination", icon: "👤" },
