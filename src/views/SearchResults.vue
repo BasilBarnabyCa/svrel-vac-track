@@ -39,7 +39,7 @@ const endItem = ref(0);
 const fetchResults = async () => {
 	try {
 		const token = localStorage.getItem("access_token");
-		const response = await axios.get(`http://sm.svrel.test/api/external/jrc/horses/search?q=${searchQuery.value}`, {
+		const response = await axios.get(`/horses/search?q=${searchQuery.value}`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		horses.value = response.data.data;

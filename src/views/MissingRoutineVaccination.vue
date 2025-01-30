@@ -50,7 +50,7 @@ const fetchHorses = async () => {
 		const token = localStorage.getItem("access_token");
 		if (!token) return (errorMessage.value = "Unauthorized. Please log in.");
 
-		const response = await axios.get(`http://sm.svrel.test/api/external/jrc/horses/missing-routine-vaccination?page=${currentPage.value}`, {
+		const response = await axios.get(`/horses/missing-routine-vaccination?page=${currentPage.value}`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 

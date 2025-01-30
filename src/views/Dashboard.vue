@@ -22,6 +22,9 @@ const formatNumber = (num) => {
 	return new Intl.NumberFormat().format(num);
 };
 
+// console.log(import.meta.env.VITE_API_BASE_URL);
+// console.log("All ENV Vars:", import.meta.env);
+
 onMounted(async () => {
 	try {
 		// Retrieve the token from local storage
@@ -33,7 +36,7 @@ onMounted(async () => {
 		}
 
 		// Set the Authorization header for the request
-		const response = await axios.get("http://sm.svrel.test/api/external/jrc/horses/dashboard", {
+		const response = await axios.get("/horses/dashboard", {
 			headers: {
 				Authorization: `Bearer ${token}`, // Send the token in the Authorization header
 			},

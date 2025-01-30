@@ -49,7 +49,7 @@ const login = async () => {
 	try {
 		// Send login request
 		const response = await axios.post(
-			"http://sm.svrel.test/api/external/jrc/login",
+			"/login",
 			{
 				email: email.value,
 				password: password.value,

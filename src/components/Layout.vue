@@ -87,7 +87,7 @@ export default {
 				if (token) {
 					// Call the logout endpoint
 					await axios.post(
-						"http://sm.svrel.test/api/external/jrc/logout",
+						"/logout",
 						{}, // No request body needed
 						{
 							headers: {
