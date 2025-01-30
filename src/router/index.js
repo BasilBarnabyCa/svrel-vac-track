@@ -6,6 +6,7 @@ import OverdueHorsesPage from "../views/OverdueHorses.vue";
 import NeedsVaccinationPage from "../views/NeedsVaccination.vue";
 import RequiresDoubleBoostersPage from "../views/RequiresDoubleBoosters.vue";
 import MissingRoutineVaccinationPage from "../views/MissingRoutineVaccination.vue";
+import SearchResults from "../views/SearchResults.vue";
 import Layout from "../components/Layout.vue";
 
 const routes = [
@@ -29,6 +30,7 @@ const routes = [
       { path: "needs-vaccination", name: "Needs Vaccination", component: NeedsVaccinationPage },
 	  { path: "requires-double-boosters", name: "Requires Double Boosters", component: RequiresDoubleBoostersPage },
 	  { path: "missing-routine-vaccination", name: "Missing Route Vaccination", component: MissingRoutineVaccinationPage },
+	  { path: '/search', name: 'searchResults', component: SearchResults },
     ],
   },
 ];

@@ -28,8 +28,13 @@
 
 				<!-- Search & User Dropdown -->
 				<div class="flex items-center space-x-4">
-					<input type="text" placeholder="Search..."
-						class="rounded-md border-1 border-gray-300 focus:ring-blue-500 focus:border-blue-500 px-3 py-2" />
+					<input
+						v-model="searchQuery"
+						@keyup.enter="search"
+						type="text"
+						placeholder="Search..."
+						class="rounded-md border-1 border-gray-300 focus:ring-blue-500 focus:border-blue-500 px-3 py-2"
+					/>
 
 					<!-- User Icon Dropdown -->
 					<div class="relative">
@@ -68,6 +73,7 @@ export default {
 		const router = useRouter();
 		const hoveredItem = ref(null);
 		const dropdownOpen = ref(false);
+		const searchQuery = ref("");
 
 		const toggleDropdown = () => {
 			dropdownOpen.value = !dropdownOpen.value;
@@ -114,7 +120,13 @@ export default {
 			{ name: "missing-routine-vaccination", label: "Missing Routine Vaccination", icon: "x-circle" },
 		]);
 
-		return { logout, hoveredItem, menuItems, dropdownOpen, toggleDropdown };
+		const search = () => {
+			if (searchQuery.value.trim() !== "") {
+				router.push({ name: "searchResults", query: { q: searchQuery.value.trim() } });
+			}
+		};
+
+		return { logout, hoveredItem, menuItems, dropdownOpen, toggleDropdown, searchQuery, search };
 	},
 };
 </script>
