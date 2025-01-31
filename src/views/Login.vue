@@ -1,6 +1,10 @@
 <template>
 	<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-		<div class="bg-white p-6 rounded-lg shadow-lg w-96">
+		<div class="flex justify-between items-center w-50 mb-5">
+			<img src="/logo.png" alt="Logo" class="w-16 h-16" />
+			<h1 class="text-3xl font-bold">VacTrack</h1>
+		</div>
+		<div class="bg-white p-6 rounded-lg shadow-lg w-96 pb-10">
 			<h2 class="text-2xl font-semibold text-center mb-4">Login</h2>
 			<!-- Error Feedback -->
 			<div v-if="errorMessage" class="bg-red-100 border border-red-200 text-red-700 px-4 py-2 rounded relative mb-5">
