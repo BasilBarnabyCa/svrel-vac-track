@@ -5,14 +5,20 @@
 			<table class="w-full text-sm text-left text-gray-500">
 				<thead class="text-xs uppercase" :class="[tableHeaderBg, tableHeaderTextColor]">
 					<tr>
-						<th v-for="header in headers" :key="header.value" scope="col" class="px-6 py-4 cursor-pointer"
-							@click="sortTable(header.value)">
-							{{ header.text }}
+						<th v-for="header in headers" :key="header.value" scope="col"
+							class="px-6 py-4 cursor-pointer h-16" @click="$emit('sortTable', header.value)">
+							<div class="flex items-center space-x-2">
+								<span>{{ header.text }}</span>
+								<span class="mt-1" v-if="sortKey === header.value">
+									<FeatherIcon :type="sortOrder === 'asc' ? 'chevron-up' : 'chevron-down'" size="16"
+										stroke-width="2" />
+								</span>
+							</div>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="horse in sortedHorses" :key="horse.id"
+					<tr v-for="horse in horses" :key="horse.id"
 						class="bg-white border-b border-slate-200 hover:bg-gray-50">
 						<td class="px-6 py-3">{{ horse.id }}</td>
 						<td class="px-6 py-3 font-semibold text-gray-900 whitespace-nowrap">{{ horse.name }}</td>
@@ -59,7 +65,7 @@
 							&laquo;
 						</button>
 
-						<!-- Dynamic Pagination with Ellipsis -->
+						<!-- Pagination Numbers with Ellipsis -->
 						<template v-for="page in displayedPages" :key="page">
 							<button v-if="page === '...'" disabled
 								class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-500">
@@ -85,10 +91,10 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import FeatherIcon from "vue-feather";
 
 // Props received from the parent component
-const props = defineProps({
+defineProps({
 	horses: Array,
 	currentPage: Number,
 	totalPages: Number,
@@ -96,62 +102,10 @@ const props = defineProps({
 	startItem: Number,
 	endItem: Number,
 	tableHeaderBg: String,
-	tableHeaderTextColor: String
-});
-
-// Sorting Logic
-const sortKey = defineModel("sortKey", { type: String, default: "" });
-const sortOrder = defineModel("sortOrder", { type: String, default: "asc" });
-
-const sortTable = (key) => {
-	if (sortKey.value === key) {
-		sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
-	} else {
-		sortKey.value = key;
-		sortOrder.value = "asc";
-	}
-};
-
-const sortedHorses = computed(() => {
-	if (!sortKey.value) return props.horses;
-	return [...props.horses].sort((a, b) => {
-		let result = a[sortKey.value] > b[sortKey.value] ? 1 : -1;
-		return sortOrder.value === "asc" ? result : -result;
-	});
-});
-
-// Compute displayed pagination pages with ellipsis
-const displayedPages = computed(() => {
-	const maxVisiblePages = 7; // Maximum number of pages to show before adding ellipsis
-	const pages = [];
-
-	if (props.totalPages <= maxVisiblePages) {
-		// If total pages is small, show all
-		for (let i = 1; i <= props.totalPages; i++) {
-			pages.push(i);
-		}
-	} else {
-		// Always show first page
-		pages.push(1);
-
-		if (props.currentPage > 4) {
-			pages.push("...");
-		}
-
-		// Show 2 pages before and after the current page
-		for (let i = Math.max(2, props.currentPage - 2); i <= Math.min(props.totalPages - 1, props.currentPage + 2); i++) {
-			pages.push(i);
-		}
-
-		if (props.currentPage < props.totalPages - 3) {
-			pages.push("...");
-		}
-
-		// Always show last page
-		pages.push(props.totalPages);
-	}
-
-	return pages;
+	tableHeaderTextColor: String,
+	sortKey: String,
+	sortOrder: String,
+	displayedPages: Array
 });
 
 // Table Headers
@@ -172,5 +126,4 @@ const formatDate = (date) => {
 		year: "numeric",
 	});
 };
-
 </script>

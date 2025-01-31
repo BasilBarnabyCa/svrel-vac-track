@@ -131,9 +131,7 @@ export default {
 		]);
 
 		const search = () => {
-			if (searchQuery.value.trim() !== "") {
-				router.push({ name: "searchResults", query: { q: searchQuery.value.trim() } });
-			}
+			router.push({ name: "searchResults", query: { q: searchQuery.value.trim() } });
 		};
 
 		return { logout, hoveredItem, menuItems, dropdownOpen, toggleDropdown, searchQuery, search };
