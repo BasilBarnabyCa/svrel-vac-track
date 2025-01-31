@@ -21,7 +21,14 @@
 					<tr v-for="horse in horses" :key="horse.id"
 						class="bg-white border-b border-slate-200 hover:bg-gray-50">
 						<td class="px-6 py-3">{{ horse.id }}</td>
-						<td class="px-6 py-3 font-semibold text-gray-900 whitespace-nowrap">{{ horse.name }}</td>
+						<td class="px-6 py-3 font-semibold text-gray-900 whitespace-nowrap">
+							<div class="flex items-center space-x-4">
+								<img v-if="horse.image" :src="horse.image" alt="Horse Image" class="w-12 h-12 rounded-full object-cover">
+								<div v-else class="w-12 h-12 rounded-full bg-slate-200 text-slate-600 flex justify-center items-center">{{ horse.name.substring(0, 1) }}</div>
+								<span>{{ horse.name }}</span>
+							</div>
+							
+						</td>
 						<td class="px-6 py-3">{{ formatDate(horse.lastVaccinationDate) }}</td>
 						<td class="px-6 py-3">{{ horse.owner }}</td>
 						<td class="px-6 py-3">{{ horse.trainer }}</td>
@@ -91,6 +98,7 @@
 </template>
 
 <script setup>
+import { stubString } from "lodash";
 import FeatherIcon from "vue-feather";
 
 // Props received from the parent component
